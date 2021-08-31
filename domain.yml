@@ -1,0 +1,57 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- ask_what_weather
+- greet
+- thanks
+- mood_great
+- show_abilities
+- goodbye
+- affirm
+- deny
+- mood_unhappy
+- bot_challenge
+entities:
+- city
+slots:
+  city:
+    type: text
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: "I'd send you a picture of a kitten, but it seems a little shallow to me. Unfortunately, I am not able to help you, I am only a bot :/ "
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a Bob.
+  utter_ask_city:
+  - text: In which city?
+  utter_welcome:
+  - text: You're welcome :)
+  - text: My pleasure :)
+  - text: I'm here for you :)
+  utter_abilities:
+  - text: Well, I'm just simple weather bot. I can tell you what is the weather in city you like :)
+  - text: I can check the weather for you.
+actions:
+- action_check_weather
+- utter_abilities
+- utter_ask_city
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_welcome
+forms:
+  weather_form:
+    required_slots:
+      city:
+      - type: from_text
+        entity: city

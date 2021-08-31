@@ -1,0 +1,24 @@
+version: "2.0"
+stories:
+- story: weather question no location (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - user: |-
+      What is the weather in [Warsaw](city)?
+    entities:
+    - city: Warsaw
+  - slot_was_set:
+    - city: Warsaw
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: ask_what_weather
+  - action: action_check_weather  # predicted: weather_form
+  - user: |-
+      Thank you!
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: thanks
+  - action: utter_welcome  # predicted: weather_form
+  - intent: goodbye
+  - action: utter_goodbye
