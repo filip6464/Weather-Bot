@@ -27,7 +27,7 @@ responses:
   utter_did_that_help:
   - text: Did that help you?
   utter_happy:
-  - text: Great, carry on!
+  - text: Great!
   utter_goodbye:
   - text: Bye
   utter_iamabot:
