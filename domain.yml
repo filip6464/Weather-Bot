@@ -1,23 +1,42 @@
 version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- ask_what_weather
-- greet
-- thanks
-- mood_great
-- show_abilities
-- goodbye
-- affirm
-- deny
-- mood_unhappy
-- bot_challenge
+- ask_what_weather:
+    use_entities: true
+- greet:
+    use_entities: true
+- thanks:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- show_abilities:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
 entities:
 - city
 slots:
   city:
-    type: text
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  name:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
 responses:
   utter_greet:
@@ -53,5 +72,6 @@ forms:
   weather_form:
     required_slots:
       city:
-      - type: from_text
-        entity: city
+      - entity: city
+        type: from_text
+e2e_actions: []
